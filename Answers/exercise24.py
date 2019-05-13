@@ -1,52 +1,56 @@
 import os
 os.system('cls')
 
-def isAnagram(string1, string2):
-	#Spliting the two strings into indivdual letters into a list
-	string_list1 = [i for i in string1]
-	string_list2 = [i for i in string2]
-	
-	#Boolean value testing to see if the both strings are anagrams
-	itsAnagram = True
+def isAnagram(input1, input2):
+  if len(input1) != len(input2):
+    return False
+  elif len(input1) == 0 and len(input2) == 0:
+    return print("Strings are Empty")
+  
+  isAnagram = None
 
-	#Checks if the two strings are the same length
-	if len(string_list1) != len(string_list2):
-		print("\nNot the same length")
+  #Spliting the two strings into indivdual letters into a list
+  input1 = [i for i in input1]
+  input2 = [i for i in input2]
+  
+  input1.sort()
+  input2.sort()
+  #Combing our two list into one list
 
-	merged_list =[*string_list1,*string_list2]
-	
-	#Empty dictionary to store the merged list of letters
-	string_dict = {}
+  #Keeps the counts of letters
+  input1_dict = {} #empty
+  input2_dict = {}
+  #Counts ther number of letters of a particular character O(a * b) linear speed
+  for char in input1:
+      if char in input1_dict:
+          input1_dict[char] += 1
+      else:
+          input1_dict[char] = 1 
+  
+  for char in input2:
+      if char in input2_dict:
+          input2_dict[char] += 1
+      else:
+          input2_dict[char] = 1 
+ 
+  if input1_dict == input2_dict:
+    isAnagram = True
+  else:
+    isAnagram = False
 
-	#Adds each letter into the dictionary and adds 1 to their value if its already in the dictionary
-	for letter in merged_list:
-		if letter in string_dict:
-			string_dict[letter] += 1
-		else:
-			string_dict[letter] = 1	
+  return isAnagram  
 
-	#Iterate through the values checking if all the letters appeared at least twice to be qualify as an anagram
-	for value in string_dict.values():
-		if value % 2 != 0:
-			itsAnagram = False
-		else:
-			itsAnagram = True
+print("Enter two strings and I'll tell you if they are anagrams:")
+user_input1 = input("Enter first string: ")
+user_input2 = input("Enter Second string: ")
 
-	return itsAnagram
 
-#Prompt user to input two strings.
-print("Enter two strings and I\'ll tell you if they are anagrams: ")
-first_string = input("Enter the first string: ")
-second_string = input("Enter the second string: ")
-
-#Tests if the two strings are anagrams
-result = isAnagram(first_string,second_string)
-
-#Prints out results of isAnagram() function call
-if result == True:
-	print(f"\"{first_string}\" and \"{second_string}\" are anagrams.")
+if isAnagram(user_input1,user_input2):
+  print(f"{user_input1} and {user_input2} are anagrams")
+elif len(user_input1) == 0 and len(user_input2) == 0:
+  print()
 else:
-	print(f"\"{first_string}\" and \"{second_string}\" are not anagrams.")
+  print("They aren't anagrams.")
 
 
 """
