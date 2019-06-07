@@ -1,28 +1,66 @@
 import os
 os.system('cls')
+class Employees:
+  def __init__(self):
+    self.names = []
+  
+  def add(self,name):
+    self.names.append(name)
+  
+  def delete(self,name):
+    self.names.remove(name)
+    
+  def exit(self,user_input):
+    exit()
+    
+  def list_size(self):
+    return len(self.names)
 
-employee_list = ["John Smith", "Jackie Jackson", "Chris Jones", "Amanda Cullen", "Jeremy Goodwin"]
+  def print_names(self):
+     print('\n')
+     for name in self.names:
+       print(name)
 
-print(f"There are {len(employee_list)} employees: ")
+  def user_options(self):
+    print('\n')
+    print("what is your choice?")
+    print("A: to add employee")
+    print("B: to delete employee")
+    print("C: to exit")
+    print("D: to print employee list")
 
-for i in employee_list:
-	print(i)
-	
-print("\n")
+    print('\n')
+    user_input = input("Pick an option: ")
+    
+    return user_input
+
+
+  def user_choice(self,choice):
+    if choice is "A":
+      name = input("What's the name? ")
+      self.add(name)
+    elif choice is "B":
+      name = input("What's the name you want to remove? ")
+      self.delete(name)
+    elif choice is "C":
+      print("GoodBye!!!")
+      exit()
+    elif choice is "D":
+      self.print_names()
+    else:
+      print("Not a valid option")
+      self.user_options()
+
+  def run_program(self):
+    choice = company.user_options()
+    company.user_choice(choice)
+
+
+
+company = Employees()
 
 while True:
-	
-	employee = input("Enter an employee name to remove or \"quit\" to exit: ")
-	
-	if employee == "quit" or len(employee_list) == 0:
-		exit()
-	else:
-		employee_list.remove(employee)
-		print(f"There are {len(employee_list)} employees: ")
-		for i in employee_list:
-			print(i)
-		employee = input("Enter an employee name to remove or \"quit\" to exit: ")
-		continue
+  company.run_program()
 
 
 """
