@@ -1,5 +1,6 @@
 import os
 os.system('cls')
+
 class Employees:
   def __init__(self):
     self.names = []
